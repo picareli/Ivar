@@ -1,0 +1,5 @@
+Ivar_Unity/obj/
+Ivar_Unity/Temp/
+*.csproj
+*.sln
+*.userprefs
