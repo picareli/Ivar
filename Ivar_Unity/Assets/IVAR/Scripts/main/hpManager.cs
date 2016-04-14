@@ -13,18 +13,20 @@ public class hpManager : MonoBehaviour
     
     void Start()
     {
-        gameOver = GameObject.Find("gameOver").GetComponent<Text>();
+        gameOver = GameObject.Find("txt_message").GetComponent<Text>();
     }
     
 	void OnTriggerEnter(Collider col)
 	{
 		if(this.tag == "Player" && col.tag == "enemy")
 		{
-			getDmg(col);
+            if(col.GetComponentInParent<enemyMove>().state == "attacking")
+    			getDmg(col);
 		}
 		else if(this.tag == "enemy" && col.tag == "weapon")
 		{
-			getDmg(col);
+            if(col.GetComponentInParent<movementControl>().state == "attacking")
+			    getDmg(col);
 
 			int type = col.GetComponent<weaponManager>().attackType;
 

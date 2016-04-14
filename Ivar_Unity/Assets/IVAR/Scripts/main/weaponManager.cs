@@ -15,9 +15,9 @@ public class weaponManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(Input.GetMouseButtonDown(0) && attackType == 0)
+        /*if(Input.GetMouseButtonDown(0) && attackType == 0)
             attackType = 1;
         if(Input.GetMouseButtonDown(1) && attackType == 0)
-            attackType = 2;
+            attackType = 2;*/
 	}
 }

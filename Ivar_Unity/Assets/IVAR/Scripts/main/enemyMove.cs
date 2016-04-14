@@ -16,6 +16,8 @@ public class enemyMove : MonoBehaviour
     public bool knockedBack = false;
     public int force = 100;
     
+    public string state = "idle";
+    
 	void Start ()
 	{
 		target = GameObject.Find("Player").transform;
@@ -23,6 +25,8 @@ public class enemyMove : MonoBehaviour
     
 	void Update ()
 	{
+        Animator anim = GetComponentInParent<Animator>();
+        
 		if(target)
 		{
 			enemyHP.text = this.GetComponent<hpManager>().health.ToString();
@@ -30,7 +34,7 @@ public class enemyMove : MonoBehaviour
 			Vector3 targetPos = new Vector3(target.position.x, transform.position.y, target.position.z);
 			transform.LookAt(targetPos);
 			
-			if(Vector3.Distance(transform.position,target.position) >= MinDist)
+			if(Vector3.Distance(transform.position,target.position) >= MinDist && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
 			{                
                 Vector3 moveVector = target.position - transform.position;
                 
@@ -47,7 +51,15 @@ public class enemyMove : MonoBehaviour
                 }
                 
                 cc.Move(moveVector * Time.deltaTime);
+                
+                state = "moving";
 			}
+            else
+            {
+                anim.Play("Attack");
+                
+                state = "attacking";
+            }
 		}
 	}
 }
