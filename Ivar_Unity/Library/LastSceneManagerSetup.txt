@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/IVAR/Scenes/menu.unity
+- path: Assets/IVAR/Scenes/main.unity
   isLoaded: 1
   isActive: 1

@@ -13,7 +13,7 @@ public class hpManager : MonoBehaviour
     
     void Start()
     {
-        gameOver = GameObject.Find("txt_message").GetComponent<Text>();
+        //gameOver = GetComponentInChildren(u, true); //("txt_fail").GetComponent<Text>();
     }
     
 	void OnTriggerEnter(Collider col)

@@ -18,10 +18,7 @@ namespace UnityStandardAssets.Utility
 
 		void Update ()
 		{
-			if(Input.GetKeyUp(KeyCode.Escape))
-			{
-				SceneManager.LoadScene(0);
-			}
+            
 		}
     }
 }
