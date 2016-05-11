@@ -3848,7 +3848,7 @@ MonoBehaviour:
   target: {fileID: 0}
   MoveSpeed: 4
   MaxDist: 10
-  MinDist: 1
+  MinDist: 2
   gravity: 9.81
   knockedBack: 0
   force: 300

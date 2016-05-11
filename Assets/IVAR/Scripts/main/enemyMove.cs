@@ -46,7 +46,6 @@ public class enemyMove : MonoBehaviour
                 
                 if(knockedBack)
                 {
-                    
                     //GetComponent<Animation>().Play("knock_back");
                 }
                 
