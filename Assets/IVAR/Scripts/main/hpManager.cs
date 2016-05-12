@@ -11,8 +11,13 @@ public class hpManager : MonoBehaviour
     
     public Text gameOver;
     
+    public bool boss = false;
+    
+    gameManager god;
+    
     void Start()
     {
+        god = gameManager.getGM();
         //gameOver = GetComponentInChildren(u, true); //("txt_fail").GetComponent<Text>();
     }
     
@@ -78,9 +83,10 @@ public class hpManager : MonoBehaviour
 		{
 			this.gameObject.SetActive(false);
             
-            if(this.name == "boss")
+            if(boss)
             {
-                gameOver.text = "LEVEL COMPLETE!";
+                god.setLevelObjective(true);
+                print("gameover");
             }
 		}
 	}
