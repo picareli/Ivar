@@ -17,7 +17,7 @@ public class hpManager : MonoBehaviour
     
     void Start()
     {
-        god = gameManager.getGM();
+        god = gameManager.GetInstance();
         //gameOver = GetComponentInChildren(u, true); //("txt_fail").GetComponent<Text>();
     }
     
@@ -25,12 +25,12 @@ public class hpManager : MonoBehaviour
 	{
 		if(this.tag == "Player" && col.tag == "enemy")
 		{
-            if(col.GetComponentInParent<enemyMove>().state == "attacking")
+            if(col.GetComponentInParent<enemyMove>()._isAttacking)
     			getDmg(col);
 		}
 		else if(this.tag == "enemy" && col.tag == "weapon")
 		{
-            if(col.GetComponentInParent<movementControl>().state == "attacking")
+            if(col.GetComponentInParent<movementControl>()._isAttacking)
 			    getDmg(col);
 
 			int type = col.GetComponent<weaponManager>().attackType;
@@ -83,11 +83,11 @@ public class hpManager : MonoBehaviour
 		{
 			this.gameObject.SetActive(false);
             
-            if(boss)
+            /*if(boss)
             {
                 god.setLevelObjective(true);
                 print("gameover");
-            }
+            }*/
 		}
 	}
 }

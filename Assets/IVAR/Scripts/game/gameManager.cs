@@ -2,58 +2,85 @@
 
 public class gameManager : MonoBehaviour
 {
-    bool isPaused = false;
-    bool levelObjective = false;
+    private static gameManager _instance;
+
+    public enum GameState { PLAYING, PAUSED };
+
+    private GameState _currentState;
+
+    private GameObject _currentWeapon;
+
+    public static gameManager GetInstance()
+    {
+        if (_instance == null)
+        {
+            Instantiate(Resources.Load("Prefabs/GOD"));
+        }
+
+        return _instance;
+    }
 
     // Use this for initialization
     void Awake()
-    {   
-        DontDestroyOnLoad(this);
+    {
+        DontDestroyOnLoad(this.gameObject);
+
+        if (_instance != null)
+            Destroy(_instance.gameObject);
+
+        _instance = this;
+
+        _currentState = GameState.PLAYING;
     }
 
-    void Start()
+    void Start ()
     {
+        _currentWeapon = GameObject.Find("HandMadeAxe");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (IsPlaying())
+            {
+                Pause();
+                gameUI.EnableMenu(true);
+            }
+            else
+            {
+                Resume();
+                gameUI.EnableMenu(false);
+            }
+        }
     }
 
-    public static gameManager getGM()
+    public void Resume()
     {
-        return GameObject.Find("GOD").GetComponent<gameManager>();
+        _currentState = GameState.PLAYING;
     }
 
-    public bool getPaused()
+    public void Pause()
     {
-        return isPaused;
+        _currentState = GameState.PAUSED;
     }
 
-    public void setPaused(bool value)
+    public bool IsPlaying()
     {
-        isPaused = value;
+        if (_currentState == GameState.PLAYING)
+            return true;
+        else
+            return false;
     }
 
-    public void pauseGame()
+    public GameObject GetCurrentWeapon()
     {
-        //disable player
-        //disable enemies
+        return _currentWeapon;
     }
 
-    public void setLevelObjective(bool myValue)
+    public void SetCurrentWeapon(GameObject newWeapon)
     {
-        levelObjective = myValue;
-    }
-
-    public bool getLevelObjective()
-    {
-        return levelObjective;
-    }
-    
-    void OnLevelWasLoaded()
-    {
-        levelObjective = false;
+        _currentWeapon = newWeapon;
     }
 }

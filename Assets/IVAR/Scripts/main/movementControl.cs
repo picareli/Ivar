@@ -3,26 +3,36 @@
 
 public class movementControl : MonoBehaviour
 {
+    // GameManager instance
+    gameManager GM;
+
     Animator anim;
     public float gravity = 9.81f;
     public Vector3 movement;
     public float speed = 0.8f;
     public string state = "idle";
 
+    public bool _isAttacking = false;
+
     // Use this for initialization
     void Start()
     {
+        GM = gameManager.GetInstance();
+
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
-        LookAtMouse();
+        if (GM.IsPlaying())
+        {
+            Move();
+            LookAtMouse();
 
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("standing_melee_attack_360_low") || anim.GetCurrentAnimatorStateInfo(0).IsName("standing_melee_attack_horizontal"))
-            state = "attacking";
+            /*if (anim.GetCurrentAnimatorStateInfo(0).IsName("standing_melee_attack_360_low") || anim.GetCurrentAnimatorStateInfo(0).IsName("standing_melee_attack_horizontal"))
+                state = "attacking";*/
+        }
     }
 
     void LookAtMouse()
@@ -69,14 +79,14 @@ public class movementControl : MonoBehaviour
         {
             anim.SetBool("isRunning", true);
             anim.SetBool("isIdle", false);
-            
+
             state = "moving";
         }
         else
         {
             anim.SetBool("isRunning", false);
             anim.SetBool("isIdle", true);
-            
+
             state = "idle";
         }
 

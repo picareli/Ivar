@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/IVAR/Scenes/menu.unity
   - enabled: 1
-    path: Assets/IVAR/Scenes/main.unity
+    path: Assets/IVAR/Scenes/level_1.unity
   - enabled: 1
     path: Assets/IVAR/Scenes/level_2.unity
+  - enabled: 1
+    path: Assets/IVAR/Scenes/level_3.unity
